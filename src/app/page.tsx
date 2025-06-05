@@ -40,6 +40,30 @@ const Tarefa: React.FC<TarefaProps> = ({ titulo, concluido }) => {
 	);
 };
 
+interface TarefaInterface {
+	id: number;
+	title: string;
+	completed: boolean;
+}
+
+interface TareafasProps {
+	dados: Array<TarefaInterface>;
+}
+
+const Tarefas: React.FC<TareafasProps> = ({ dados }) => {
+	return (
+		<div>
+			{dados.map((tarefa) => (
+				<Tarefa
+					key={tarefa.id}
+					titulo={tarefa.title}
+					concluido={tarefa.completed}
+				/>
+			))}
+		</div>
+	);
+};
+
 const Home = () => {
 	const tarefas = [
 		{ id: 1, title: "delectus aut autem", completed: false },
@@ -50,8 +74,7 @@ const Home = () => {
 	return (
 		<div className="container mx-auto p-4">
 			<Cabecalho />
-			<Tarefa titulo={tarefas[0].title} concluido={tarefas[0].completed} />
-			<Tarefa titulo={tarefas[1].title} concluido={tarefas[1].completed} />
+			<Tarefas dados={tarefas} />
 		</div>
 	);
 };
