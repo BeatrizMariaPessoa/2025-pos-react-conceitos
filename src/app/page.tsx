@@ -54,6 +54,7 @@ const Home = () => {
 			<Cabecalho />
 			<Tarefa titulo={tarefas[0].title} concluido={tarefas[0].completed} />
 			<Tarefa titulo={tarefas[1].title} concluido={tarefas[1].completed} />
+			<Tarefa titulo={tarefas[2].title} concluido={tarefas[2].completed} />
 		</div>
 	);
 };
