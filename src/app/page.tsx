@@ -26,9 +26,7 @@ interface TarefaProps {
 
 const Tarefa: React.FC<TarefaProps> = ({ titulo, concluido }) => {
 	const classe = `p-3 mb-3 rounded-lg shadow-md hover:cursor-pointer hover:border ${
-		concluido
-			? "bg-gray-800 hover:border-gray-800"
-			: "bg-gray-400 hover:border-gray-400"
+		concluido? "bg-gray-800 hover:border-gray-800" : "bg-gray-400 hover:border-gray-400"
 	}`;
 
 	return (
