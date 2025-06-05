@@ -1,5 +1,6 @@
 "use client";
 
+
 import React from "react";
 
 const Titulo = () => (
@@ -19,25 +20,26 @@ function Cabecalho() {
 	);
 }
 
-interface TarefaProps {
-	titulo: string;
-	concluido?: boolean;
+interface TarefaInterface {
+	id: number;
+	title: string;
+	completed: boolean;
 }
 
-const Tarefa: React.FC<TarefaProps> = ({ titulo, concluido }) => {
-	const classe = `p-3 mb-3 rounded-lg shadow-md hover:cursor-pointer hover:border ${
-		concluido
-			? "bg-gray-800 hover:border-gray-800"
-			: "bg-gray-400 hover:border-gray-400"
-	}`;
+interface TareafasProps {
+	dados: Array<TarefaInterface>;
+}
 
+const Tarefas: React.FC<TareafasProps> = ({ dados }) => {
 	return (
-		<div
-			className={classe}
-			onClick={() => console.log(`A tarefa '${titulo}' foi clicada!`)}
-		>
-			<h3 className="text-xl font-bold">{titulo}</h3>
-			<p className="text-sm">{concluido ? "Concluída" : "Pendente"}</p>
+		<div>
+			{dados.map((tarefa) => (
+				<Tarefa
+					key={tarefa.id}
+					titulo={tarefa.title}
+					concluido={tarefa.completed}
+				/>
+			))}
 		</div>
 	);
 };
@@ -52,9 +54,7 @@ const Home = () => {
 	return (
 		<div className="container mx-auto p-4">
 			<Cabecalho />
-			<Tarefa titulo={tarefas[0].title} concluido={tarefas[0].completed} />
-			<Tarefa titulo={tarefas[1].title} concluido={tarefas[1].completed} />
-			<Tarefa titulo={tarefas[2].title} concluido={tarefas[2].completed} />
+			<Tarefas dados={tarefas} />
 		</div>
 	);
 };
