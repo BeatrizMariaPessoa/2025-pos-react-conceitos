@@ -1,5 +1,5 @@
+// src/app/page.tsx
 "use client";
-
 
 import React from "react";
 
@@ -20,29 +20,24 @@ function Cabecalho() {
 	);
 }
 
-interface TarefaInterface {
-	id: number;
-	title: string;
-	completed: boolean;
+interface TarefaProps {
+  titulo: string;
+	concluido?: boolean;
 }
 
-interface TareafasProps {
-	dados: Array<TarefaInterface>;
-}
+class Tarefa extends React.Component<TarefaProps> {
+	
+	render(): React.ReactNode {
+		const classe = `p-3 mb-3 rounded-lg shadow-md hover:cursor-pointer hover:border ${this.props.concluido ? "bg-gray-800 hover:border-gray-800" : "bg-gray-400 hover:border-gray-400"}`;
 
-const Tarefas: React.FC<TareafasProps> = ({ dados }) => {
-	return (
-		<div>
-			{dados.map((tarefa) => (
-				<Tarefa
-					key={tarefa.id}
-					titulo={tarefa.title}
-					concluido={tarefa.completed}
-				/>
-			))}
-		</div>
-	);
-};
+		return (
+			<div className={classe}>
+				<h3 className="text-xl font-bold">{this.props.titulo}</h3>
+				<p className="text-sm">{this.props.concluido ? "Concluída" : "Pendente"}</p>
+			</div>
+		);
+	}
+}
 
 const Home = () => {
 	const tarefas = [
@@ -54,7 +49,8 @@ const Home = () => {
 	return (
 		<div className="container mx-auto p-4">
 			<Cabecalho />
-			<Tarefas dados={tarefas} />
+			<Tarefa titulo={tarefas[0].title} concluido={tarefas[0].completed} />
+			<Tarefa titulo={tarefas[1].title} concluido={tarefas[1].completed} />
 		</div>
 	);
 };
