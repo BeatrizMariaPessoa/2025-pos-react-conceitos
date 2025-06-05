@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 "use client";
 
 import React from "react";
@@ -50,8 +48,8 @@ const Home = () => {
 	return (
 		<div className="container mx-auto p-4">
 			<Cabecalho />
-			<Tarefa titulo={tarefas[0].title} />
-			<Tarefa titulo={tarefas[1].title} />
+			<Tarefa titulo={tarefas[0].title} concluido={tarefas[0].completed} />
+			<Tarefa titulo={tarefas[1].title} concluido={tarefas[1].completed} />
 		</div>
 	);
 };
