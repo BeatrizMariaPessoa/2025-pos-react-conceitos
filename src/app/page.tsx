@@ -20,23 +20,27 @@ function Cabecalho() {
 }
 
 interface TarefaProps {
-  titulo: string;
+	titulo: string;
 	concluido?: boolean;
 }
 
-class Tarefa extends React.Component<TarefaProps> {
-	
-	render(): React.ReactNode {
-		const classe = `p-3 mb-3 rounded-lg shadow-md ${this.props.concluido ? "bg-gray-800" : "bg-gray-400"}`;
+const Tarefa: React.FC<TarefaProps> = ({ titulo, concluido }) => {
+	const classe = `p-3 mb-3 rounded-lg shadow-md hover:cursor-pointer hover:border ${
+		concluido
+			? "bg-gray-800 hover:border-gray-800"
+			: "bg-gray-400 hover:border-gray-400"
+	}`;
 
-		return (
-			<div className={classe}>
-				<h3 className="text-xl font-bold">{this.props.titulo}</h3>
-				<p className="text-sm">{this.props.concluido ? "Concluída" : "Pendente"}</p>
-			</div>
-		);
-	}
-}
+	return (
+		<div
+			className={classe}
+			onClick={() => console.log(`A tarefa '${titulo}' foi clicada!`)}
+		>
+			<h3 className="text-xl font-bold">{titulo}</h3>
+			<p className="text-sm">{concluido ? "Concluída" : "Pendente"}</p>
+		</div>
+	);
+};
 
 const Home = () => {
 	const tarefas = [
